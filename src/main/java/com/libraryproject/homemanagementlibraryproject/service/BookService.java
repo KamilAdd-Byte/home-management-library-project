@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookService {
 
-    List<BookDto> findAllBooks();
+    List<BookDto> getAllBooks();
 
     BookDto addBook(BookDto book);
 }
