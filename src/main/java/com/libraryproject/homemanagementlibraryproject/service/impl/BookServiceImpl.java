@@ -45,4 +45,10 @@ public class BookServiceImpl implements BookService {
         BookEntity bookEntity = bookMapper.mapToEntity(book);
         return bookMapper.mapToDto(bookRepository.save(bookEntity));
     }
+
+    @Override
+    public void deletedBook(Long id,BookDto book) {
+       BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+       bookRepository.delete(bookEntity);
+    }
 }

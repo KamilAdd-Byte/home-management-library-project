@@ -45,9 +45,6 @@
 </head>
 <body>
 <div id="container">
-  <div id="logoType">
-    <img class="d-inline-block align-top" height="30" src="/home/kamillodzinski/LOCAL repositories GIT/SPIO PROJECT/src/main/resources/logo.png" width="30">
-  </div>
   <nav id="navbar">
     <a class="navbar-brand">
 
@@ -77,7 +74,7 @@
         <td th:text="${books.description}"></td>
         <td>
           <a  class="btn btn-outline-warning"> Edit </a>
-		  <a  class="btn btn-outline-danger"> Deleted </a>
+		  <a  th:href="@{/showBookDeleted/{id}(id=${books.id})}" class="btn btn-outline-danger"> Deleted </a>
         </td>
       </tr>
       </thead>
