@@ -12,16 +12,16 @@
 		<div id="logo">
 			<h1 align="center">Domowa biblioteka</h1>
 		</div>
-		<form action="#" th:action="@{/save_book}" th:object="${book}">
-			<input type="text" th:fields="*{title}" placeholder="Title" class="form-control mb-4 col-4">
-			<input type="text" th:fields="*{author}" placeholder="Author" class="form-control mb-4 col-4">			<input type="text" th:fields="*{title}" placeholder="Title" class="form-control mb-4 col-4">
-			<input type="text" th:fields="*{status}" placeholder="Status" class="form-control mb-4 col-4">
-			<input type="text" th:fields="*{description}" placeholder="Description" class="form-control mb-4 col-4">
+		<form action="#" th:action="@{/save_book}" th:object="${book}" method="post">
+			<input type="text" th:field="*{title}" placeholder="Title" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{author}" placeholder="Author" class="form-control mb-4 col-4">			<input type="text" th:fields="*{title}" placeholder="Title" class="form-control mb-4 col-4">
+<!--			<input type="text" th:fields="*{status}" placeholder="Status" class="form-control mb-4 col-4">-->
+			<input type="text" th:field="*{description}" placeholder="Description" class="form-control mb-4 col-4">
 		<button class="bg-primary btn-lg" type="submit"> Add </button>
 		</form>
 	</div>
 <div>
-	<a th:href="@{/}"> Strona główna</a>
+	<a th:href="@{/index}"> Strona główna</a>
 </div>
 </body>
 </html>
