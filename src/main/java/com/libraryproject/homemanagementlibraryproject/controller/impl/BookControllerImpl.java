@@ -26,6 +26,7 @@ public class BookControllerImpl implements BookController {
         return "books";
     }
 
+    @GetMapping("/showNewBookForm")
     public String showNewBookForm (Model model) {
         BookEntity book = new BookEntity();
         model.addAttribute("book",book);
@@ -34,7 +35,7 @@ public class BookControllerImpl implements BookController {
 
     @PostMapping("/save_book")
     public String saveBook (@ModelAttribute ("book") BookEntity bookEntity) {
-
-        bookMapper.
+        bookService.addBook(bookMapper.mapToDto(bookEntity));
+        return "new_book";
     }
 }
