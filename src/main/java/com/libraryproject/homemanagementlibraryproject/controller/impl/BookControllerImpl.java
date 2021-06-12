@@ -20,7 +20,7 @@ public class BookControllerImpl implements BookController {
     @Autowired
     private BookMapper bookMapper;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String getAllBooks (Model model){
         model.addAttribute("getAllBooks",bookService.getAllBooks());
         return "index";
@@ -36,6 +36,6 @@ public class BookControllerImpl implements BookController {
     @PostMapping("/save_book")
     public String saveBook (@ModelAttribute ("book") BookEntity bookEntity) {
         bookService.addBook(bookMapper.mapToDto(bookEntity));
-        return "new_book";
+        return "redirect:/index";
     }
 }
