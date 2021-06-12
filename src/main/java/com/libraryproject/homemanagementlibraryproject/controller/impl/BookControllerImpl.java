@@ -34,7 +34,7 @@ public class BookControllerImpl implements BookController {
     }
 
     @PostMapping("/save_book")
-    public String saveBook (@ModelAttribute ("book") BookEntity bookEntity) {
+    public String saveBook(@ModelAttribute ("book") BookEntity bookEntity) {
         bookService.addBook(bookMapper.mapToDto(bookEntity));
         return "redirect:/index";
     }
