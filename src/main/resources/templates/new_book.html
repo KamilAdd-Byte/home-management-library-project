@@ -6,22 +6,63 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 		  crossorigin="anonymous">
+	<style>
+        #container {
+            padding: 20px;
+        }
+
+        #contentContainer {
+            padding: 10px;
+        }
+
+        #logo {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-size: 35px;
+            /*//roztrzelenie liter*/
+            letter-spacing: 4px;
+            font-weight: 900;
+            padding: 10px;
+        }
+
+        #navi {
+            padding: 30px;
+        }
+
+        #footer {
+            clear: both;
+            background-color: black;
+            font-size: 22px;
+            color: white;
+            text-align: center;
+        }
+	</style>
+
 </head>
 <body>
-	<div id="container">
-		<div id="logo">
-			<h1 align="center">Domowa biblioteka</h1>
-		</div>
-		<form action="#" th:action="@{/save_book}" th:object="${book}" method="post">
-			<input type="text" th:field="*{title}" placeholder="Title" class="form-control mb-4 col-4">
-			<input type="text" th:field="*{author}" placeholder="Author" class="form-control mb-4 col-4">			<input type="text" th:fields="*{title}" placeholder="Title" class="form-control mb-4 col-4">
-<!--			<input type="text" th:fields="*{status}" placeholder="Status" class="form-control mb-4 col-4">-->
-			<input type="text" th:field="*{description}" placeholder="Description" class="form-control mb-4 col-4">
-		<button class="bg-primary btn-lg" type="submit"> Add </button>
+<div id="container" th:align="center">
+	<div id="logo">
+		<h1 align="center">Domowa biblioteka</h1>
+	</div>
+	<div id="contentContainer" th:align="center">
+		<form action="#" method="post" th:action="@{/save_book}" th:object="${book}">
+			<input class="form-control mb-4 col-4" placeholder="Title" th:field="*{title}" type="text">
+			<input class="form-control mb-4 col-4" placeholder="Author" th:field="*{author}" type="text"> <input
+				class="form-control mb-4 col-4"
+				placeholder="Title"
+				th:fields="*{title}" type="text">
+			<!--			<input type="text" th:fields="*{status}" placeholder="Status" class="form-control mb-4 col-4">-->
+			<input class="form-control mb-4 col-4" placeholder="Description" th:field="*{description}" type="text">
+			<button class="bg-primary btn-lg" type="submit"> Add</button>
 		</form>
 	</div>
-<div>
-	<a th:href="@{/index}"> Strona główna</a>
+	<div th:align="center">
+		<a th:href="@{/index}"> Strona główna</a>
+	</div>
+	<div id="footer">
+    <h1>Project</h1>
+  </div>
 </div>
 </body>
 </html>
