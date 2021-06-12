@@ -7,21 +7,33 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
   <style>
-    #logo
-    {
+    #container {
+      padding: 20px;
+    }
+    #contentContainer  {
+      padding: 10px;
+    }
+    #logo {
+      padding: 20px;
       background-color: black;
       color: white;
       text-align: center;
     }
-    #navi
-    {
-      padding: 30px;
+
+    table {
+      align-content: center;
+      padding: 10px;
     }
+    .table:hover {
+      pointer-events: auto;
+      padding: 10px;
+    }
+
     #footer
     {
       clear: both;
       background-color: black;
-      font-size: 22px;
+      font-size: 18px;
       color: white;
       text-align: center;
     }
@@ -32,32 +44,37 @@
 <div id="container">
   <div id="logo">
     <a th:href="@{/showNewBookForm}" class="bg-success btn btn-success btn-lg mb-2">Add</a>
-
   </div>
-  <table th:border="2" class="table table-striped table-responsive-lg">
-    <thead>
-    <tr>
-      <th> ID book</th>
-      <th> Title book</th>
-      <th> Author book</th>
-<!--      <th> Status book</th>-->
-      <th> Description book</th>
-      <th> Options</th>
-    </tr>
-    </thead>
-    <tbody>
-    <thead>
-    <tr th:align="center" th:each="books: ${getAllBooks}">
-      <td th:text="${books.id}" ></td>
-      <td th:text="${books.title}"></td>
-      <td th:text="${books.author}"></td>
-<!--      <td th:text="${books.status}"></td>-->
-      <td th:text="${books.description}"></td>
-      <td></td>
-    </tr>
-    </thead>
-    </tbody>
-  </table>
+  <div id="contentContainer">
+    <table th:border="2" class="table table-striped table-responsive-lg">
+      <thead>
+      <tr>
+        <th> ID book</th>
+        <th> Title book</th>
+        <th> Author book</th>
+        <!--      <th> Status book</th>-->
+        <th> Description book</th>
+        <th> Options</th>
+      </tr>
+      </thead>
+      <tbody>
+      <thead>
+      <tr th:align="center" th:each="books: ${getAllBooks}">
+        <td th:text="${books.id}" ></td>
+        <td th:text="${books.title}"></td>
+        <td th:text="${books.author}"></td>
+        <!--      <td th:text="${books.status}"></td>-->
+        <td th:text="${books.description}"></td>
+        <td></td>
+      </tr>
+      </thead>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="footer">
+    <h1>Project</h1>
+  </div>
 </div>
 
 </body>
