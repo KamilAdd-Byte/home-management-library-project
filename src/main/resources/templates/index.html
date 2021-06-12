@@ -74,7 +74,7 @@
         <td th:text="${books.description}"></td>
         <td>
           <a  class="btn btn-outline-warning"> Edit </a>
-		  <a  class="btn btn-outline-danger"> Deleted </a>
+		  <a  th:href="@{/showBookDeleted/{id}(id=${books.id})}" class="btn btn-outline-danger"> Deleted </a>
         </td>
       </tr>
       </thead>
