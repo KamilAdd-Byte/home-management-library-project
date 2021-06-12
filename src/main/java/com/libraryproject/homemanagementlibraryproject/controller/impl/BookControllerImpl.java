@@ -1,6 +1,7 @@
 package com.libraryproject.homemanagementlibraryproject.controller.impl;
 
 import com.libraryproject.homemanagementlibraryproject.controller.BookController;
+import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.entity.BookEntity;
 import com.libraryproject.homemanagementlibraryproject.mapper.BookMapper;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
@@ -17,25 +18,26 @@ public class BookControllerImpl implements BookController {
     @Autowired
     private BookService bookService;
 
-    @Autowired
-    private BookMapper bookMapper;
-
     @GetMapping("/index")
     public String getAllBooks (Model model){
-        model.addAttribute("getAllBooks",bookService.getAllBooks());
+        model.addAttribute("getAllBooks", bookService.getAllBooks());
         return "index";
     }
 
     @GetMapping("/showNewBookForm")
     public String showNewBookForm (Model model) {
-        BookEntity book = new BookEntity();
+        BookDto book = new BookDto();
         model.addAttribute("book",book);
         return "new_book";
     }
 
     @PostMapping("/save_book")
-    public String saveBook(@ModelAttribute ("book") BookEntity bookEntity) {
-        bookService.addBook(bookMapper.mapToDto(bookEntity));
+    public String saveBook(@ModelAttribute ("book") BookDto book) {
+        try {
+            bookService.addBook(book);
+        } catch (IllegalArgumentException e) {
+
+        }
         return "redirect:/index";
     }
 }

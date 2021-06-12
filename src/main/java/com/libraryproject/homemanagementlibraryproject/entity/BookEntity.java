@@ -17,10 +17,14 @@ public class BookEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
     private String author;
 
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private BookStatus status;
 
     private String description;
