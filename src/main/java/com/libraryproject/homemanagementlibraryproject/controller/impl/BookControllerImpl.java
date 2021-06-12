@@ -3,6 +3,7 @@ package com.libraryproject.homemanagementlibraryproject.controller.impl;
 import com.libraryproject.homemanagementlibraryproject.controller.BookController;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.entity.BookEntity;
+import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import com.libraryproject.homemanagementlibraryproject.mapper.BookMapper;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class BookControllerImpl implements BookController {
 
     @PostMapping("/save_book")
     public String saveBook(@ModelAttribute ("book") BookDto book) {
+        book.setStatus(BookStatus.AVAILABLE);
         try {
             bookService.addBook(book);
         } catch (IllegalArgumentException e) {
