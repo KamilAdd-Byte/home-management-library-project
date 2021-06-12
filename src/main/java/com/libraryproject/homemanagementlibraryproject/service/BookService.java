@@ -8,5 +8,7 @@ public interface BookService {
 
     List<BookDto> getAllBooks();
 
+    BookDto getBookById(Long id);
+
     BookDto addBook(BookDto book);
 }

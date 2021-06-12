@@ -33,7 +33,11 @@ public class BookControllerImpl implements BookController {
 
     @PostMapping("/save_book")
     public String saveBook(@ModelAttribute ("book") BookDto book) {
-        bookService.addBook(book);
+        try {
+            bookService.addBook(book);
+        } catch (IllegalArgumentException e) {
+
+        }
         return "redirect:/index";
     }
 }
