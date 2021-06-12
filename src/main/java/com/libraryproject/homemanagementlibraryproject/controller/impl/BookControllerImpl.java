@@ -20,10 +20,10 @@ public class BookControllerImpl implements BookController {
     @Autowired
     private BookMapper bookMapper;
 
-    @GetMapping("/books")
+    @GetMapping("/")
     public String getAllBooks (Model model){
         model.addAttribute("getAllBooks",bookService.getAllBooks());
-        return "books";
+        return "index";
     }
 
     @GetMapping("/showNewBookForm")

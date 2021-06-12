@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>Home Management Library Project</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		  crossorigin="anonymous">
 </head>
 <body>
-
+	<div id="container">
+		<div id="logo">
+			<h1 align="center">Domowa biblioteka</h1>
+		</div>
+		<form action="#" th:action="@{/save_book}" th:object="${book}">
+			<input type="text" th:fields="*{title}" placeholder="Title" class="form-control mb-4 col-4">
+			<input type="text" th:fields="*{author}" placeholder="Title" class="form-control mb-4 col-4">			<input type="text" th:fields="*{title}" placeholder="Title" class="form-control mb-4 col-4">
+			<input type="text" th:fields="*{status}" placeholder="Title" class="form-control mb-4 col-4">
+			<input type="text" th:fields="*{description}" placeholder="Title" class="form-control mb-4 col-4">
+		</form>
+	</div>
 </body>
 </html>

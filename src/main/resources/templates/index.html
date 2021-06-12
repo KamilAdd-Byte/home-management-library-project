@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Management Library Project</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+  <style>
+    #logo
+    {
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    #navi
+    {
+      padding: 30px;
+    }
+    #footer
+    {
+      clear: both;
+      background-color: black;
+      font-size: 22px;
+      color: white;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+<div id="container">
+  <div id="logo">
+    <a></a>
+
+  </div>
+  <table th:border="2" class="table table-striped table-responsive-lg">
+    <thead>
+    <tr>
+      <th> ID book</th>
+      <th> Title book</th>
+      <th> Author book</th>
+      <th> Status book</th>
+      <th> Description book</th>
+      <th> Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    <thead>
+    <tr th:align="center" th:each="books: ${getAllBooks}">
+      <td th:text="${books.id}"></td>
+      <td th:text="${books.title}"></td>
+      <td th:text="${books.author}"></td>
+      <td th:text="${books.status}"></td>
+      <td th:text="${books.description}"></td>
+      <td></td>
+    </tr>
+    </thead>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+

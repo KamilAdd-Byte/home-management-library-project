@@ -8,12 +8,38 @@
 		  crossorigin="anonymous">
 </head>
 <body>
- <div>
+<div id="container">
+	<div id="logo">
+		<a></a>
+
+	</div>
+	<table>
+		<thead>
+		<tr>
+			<th> ID book</th>
+			<th> Title book</th>
+			<th> Author book</th>
+			<th> Status book</th>
+			<th> Description book</th>
+			<th> Options</th>
+		</tr>
+		</thead>
+		<tbody>
+		<thead>
+		<tr th:align="center" th:each="books: ${getAllBooks}">
+			<td th:text="${books.id}"></td>
+			<td th:text="${books.title}"></td>
+			<td th:text="${books.author}"></td>
+			<td th:text="${books.status}"></td>
+			<td th:text="${books.description}"></td>
+			<td></td>
+		</tr>
+		</thead>
+		</tbody>
+	</table>
 
 
-
-
- </div>
+</div>
 
 </body>
 </html>
