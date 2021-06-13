@@ -3,7 +3,6 @@ package com.libraryproject.homemanagementlibraryproject.restcontroller;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
-import jdk.internal.util.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,18 +42,25 @@ public class BookRestController {
         return ResponseEntity.ok().body(savedBook);
     }
 
-    @DeleteMapping(value = "/{id}")
+    /**
+     * Deletes a book with the specified id.
+     * @param id id of the book to be deleted
+     */
+    @DeleteMapping(value = "/book/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deletedBook (@PathVariable ("id") Long id) {
         bookService.deleteBook(id);
     }
-    @PutMapping(value = "/{id")
+
+    /**
+     * Updates the specified book.
+     * @param book book with changes
+     * @return response entity with body with updated book
+     */
+    @PutMapping(value = "book")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookDto> updateBook (@PathVariable ("id") Long id,@RequestBody BookDto book){
-        if (bookValidator.areAllRequiredFieldsNotNull(book)){
-            //TODO:
-        }
-        BookDto updateBook = bookService.updateBookById(id, book);
+    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
+        BookDto updateBook = bookService.updateBook(book);
         return ResponseEntity.ok().body(updateBook);
     }
 }
