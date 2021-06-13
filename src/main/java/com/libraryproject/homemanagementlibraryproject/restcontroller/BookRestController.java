@@ -3,7 +3,9 @@ package com.libraryproject.homemanagementlibraryproject.restcontroller;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
+import jdk.internal.util.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +34,20 @@ public class BookRestController {
         }
         BookDto savedBook = bookService.addBook(book);
         return ResponseEntity.ok().body(savedBook);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletedBook (@PathVariable ("id") Long id) {
+        bookService.deleteBook(id);
+    }
+    @PutMapping(value = "/{id")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<BookDto> updateBook (@PathVariable ("id") Long id,@RequestBody BookDto book){
+        if (bookValidator.areAllRequiredFieldsNotNull(book)){
+            //TODO:
+        }
+        BookDto updateBook = bookService.updateBookById(id, book);
+        return ResponseEntity.ok().body(updateBook);
     }
 }
