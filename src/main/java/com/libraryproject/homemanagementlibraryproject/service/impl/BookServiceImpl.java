@@ -59,12 +59,9 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public BookDto updateBookById(Long id, BookDto book) {
-        if (bookValidator.areAllRequiredFieldsNotNull(book)){
-            throw new IllegalArgumentException("Some fields are null");
-        }
-        BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        return bookMapper.mapToDto(bookRepository.save(bookEntity));
+    public BookDto updateBook(BookDto book) {
+        BookEntity updateBook = bookRepository.save(bookMapper.mapToEntity(book));
+        return bookMapper.mapToDto(updateBook);
     }
 
     @Override
