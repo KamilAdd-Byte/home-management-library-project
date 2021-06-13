@@ -52,9 +52,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deleteBook(Long id) {
-       BookEntity bookEntity = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Book with given id does not exist"));
+    public void deletedBook(Long id,BookDto book) {
+       BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
        bookRepository.delete(bookEntity);
+    }
+
+    @Override
+    public BookDto updateBookById(Long id, BookDto book) {
+        if (bookValidator.areAllRequiredFieldsNotNull(book)){
+            throw new IllegalArgumentException("Some fields are null");
+        }
+        BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return bookMapper.mapToDto(bookRepository.save(bookEntity));
     }
 
     @Override

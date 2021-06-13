@@ -3,6 +3,7 @@ package com.libraryproject.homemanagementlibraryproject.service;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -98,6 +99,23 @@ class BookServiceTest {
         book.setTitle("Tytul54321");
         return book;
     }
+    @Test
+    public void shouldDeleteBookById(){
+        //given
+        // given
+        BookDto book1 = createBookDto1();
+        BookDto addedBook1 = bookService.addBook(book1);
+
+        //when
+        bookService.addBook(addedBook1);
+        long id = addedBook1.getId();
+
+        bookService.deletedBook(id,addedBook1);
+        //then
+        assertNotNull(addedBook1);
+        Assertions.assertThrows(Exception.class,() -> bookService.deletedBook(id,addedBook1));
+    }
+
 
     private PersonDto createPersonDto() {
         PersonDto person = new PersonDto();

@@ -1,7 +1,6 @@
 package com.libraryproject.homemanagementlibraryproject.service;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
-import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 
 import java.util.List;
 
@@ -16,4 +15,6 @@ public interface BookService {
     void deleteBook(Long id);
 
     void lendBook(Long bookId, PersonDto borrower);
+
+    BookDto updateBookById(Long id,BookDto book);
 }
