@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookMapper implements AbstractMapper<BookDto, BookEntity> {
 
+
     @Override
     public BookDto mapToDto(BookEntity bookEntity) {
         ModelMapper mapper = new ModelMapper();
