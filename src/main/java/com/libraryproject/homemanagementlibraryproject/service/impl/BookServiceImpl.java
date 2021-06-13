@@ -1,8 +1,11 @@
 package com.libraryproject.homemanagementlibraryproject.service.impl;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
+import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 import com.libraryproject.homemanagementlibraryproject.entity.BookEntity;
+import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import com.libraryproject.homemanagementlibraryproject.mapper.BookMapper;
+import com.libraryproject.homemanagementlibraryproject.mapper.PersonMapper;
 import com.libraryproject.homemanagementlibraryproject.repository.BookRepository;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
@@ -17,12 +20,14 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
     private final BookValidator bookValidator;
+    private final PersonMapper personMapper;
 
     @Autowired
-    public BookServiceImpl(BookRepository bookRepository, BookMapper bookMapper, BookValidator bookValidator) {
+    public BookServiceImpl(BookRepository bookRepository, BookMapper bookMapper, BookValidator bookValidator, PersonMapper personMapper) {
         this.bookRepository = bookRepository;
         this.bookMapper = bookMapper;
         this.bookValidator = bookValidator;
+        this.personMapper = personMapper;
     }
 
     @Override
@@ -47,8 +52,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deletedBook(Long id,BookDto book) {
-       BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    public void deleteBook(Long id) {
+       BookEntity bookEntity = bookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Book with given id does not exist"));
        bookRepository.delete(bookEntity);
     }
+
+    @Override
+    public void lendBook(Long bookId, PersonDto borrower) {
+        BookEntity bookEntity = bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("Book with given id does not exist"));
+        bookEntity.setStatus(BookStatus.BORROWED);
+        bookEntity.setBorrower(personMapper.mapToEntity(borrower));
+        bookRepository.save(bookEntity);
+    }
+
+
 }

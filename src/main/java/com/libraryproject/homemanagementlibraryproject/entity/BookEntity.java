@@ -29,11 +29,7 @@ public class BookEntity {
 
     private String description;
 
-    @OneToOne
-    private PersonEntity owner;
-
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private PersonEntity borrower;
-
 
 }

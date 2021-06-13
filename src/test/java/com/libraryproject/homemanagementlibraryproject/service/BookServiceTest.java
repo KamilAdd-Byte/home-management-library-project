@@ -1,6 +1,7 @@
 package com.libraryproject.homemanagementlibraryproject.service;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
+import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 
+import java.awt.print.Book;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -61,6 +63,24 @@ class BookServiceTest {
 
     }
 
+    @Test
+    void lendBookShouldChangeStatusAndPersistPerson() {
+
+        // given
+        BookDto book = createBookDto1();
+        BookDto addedBook = bookService.addBook(book);
+        PersonDto borrower = createPersonDto();
+
+        // when
+        bookService.lendBook(addedBook.getId(), borrower);
+        BookDto borrowedBook = bookService.getBookById(addedBook.getId());
+
+        // then
+        assertNotNull(borrowedBook.getBorrower().getId());
+        assertEquals(borrower.getFirstName(), borrowedBook.getBorrower().getFirstName());
+        assertEquals(borrower.getLastName(), borrowedBook.getBorrower().getLastName());
+    }
+
     private BookDto createBookDto1() {
         BookDto book = new BookDto();
         book.setAuthor("Adam");
@@ -77,5 +97,12 @@ class BookServiceTest {
         book.setDescription("abcd11");
         book.setTitle("Tytul54321");
         return book;
+    }
+
+    private PersonDto createPersonDto() {
+        PersonDto person = new PersonDto();
+        person.setFirstName("Tom");
+        person.setLastName("Smith");
+        return person;
     }
 }

@@ -22,8 +22,4 @@ public class PersonEntity {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
-    private String address;
-
-
 }

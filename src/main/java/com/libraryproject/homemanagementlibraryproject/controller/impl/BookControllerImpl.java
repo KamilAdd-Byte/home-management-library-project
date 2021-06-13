@@ -2,9 +2,7 @@ package com.libraryproject.homemanagementlibraryproject.controller.impl;
 
 import com.libraryproject.homemanagementlibraryproject.controller.BookController;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
-import com.libraryproject.homemanagementlibraryproject.entity.BookEntity;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
-import com.libraryproject.homemanagementlibraryproject.mapper.BookMapper;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,8 +48,8 @@ public class BookControllerImpl implements BookController {
         return "redirect:/index";
     }
     @GetMapping("/showBookDeleted/{id}")
-    public String deletedBookById(@PathVariable("id") Long id, BookDto book){
-        bookService.deletedBook(id,book);
+    public String deleteBookById(@PathVariable("id") Long id){
+        bookService.deleteBook(id);
         return "redirect:/";
     }
 }
