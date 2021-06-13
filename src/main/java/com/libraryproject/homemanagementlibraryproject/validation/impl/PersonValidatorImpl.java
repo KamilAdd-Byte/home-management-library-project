@@ -15,9 +15,6 @@ public class PersonValidatorImpl implements PersonValidator {
         if (person.getLastName() == null) {
             return false;
         }
-        if (person.getAddress() == null) {
-            return false;
-        }
         return true;
     }
 }
