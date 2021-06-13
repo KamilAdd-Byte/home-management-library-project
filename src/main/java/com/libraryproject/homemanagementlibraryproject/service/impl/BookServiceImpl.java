@@ -52,10 +52,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deletedBook(Long id,BookDto book) {
-       BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-       bookRepository.delete(bookEntity);
+    public void deleteBook(Long id) {
+        BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        bookRepository.delete(bookEntity);
     }
+
 
     @Override
     public BookDto updateBookById(Long id, BookDto book) {
@@ -73,6 +74,5 @@ public class BookServiceImpl implements BookService {
         bookEntity.setBorrower(personMapper.mapToEntity(borrower));
         bookRepository.save(bookEntity);
     }
-
 
 }

@@ -110,10 +110,10 @@ class BookServiceTest {
         bookService.addBook(addedBook1);
         long id = addedBook1.getId();
 
-        bookService.deletedBook(id,addedBook1);
+        bookService.deleteBook(id);
         //then
         assertNotNull(addedBook1);
-        Assertions.assertThrows(Exception.class,() -> bookService.deletedBook(id,addedBook1));
+        Assertions.assertThrows(Exception.class,() -> bookService.deleteBook(id));
     }
 
 
