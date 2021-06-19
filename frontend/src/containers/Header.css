@@ -1,8 +1,13 @@
 header {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 45px;
+    background-color: #0f4659;
+    color: #fff;
+    padding-right: 15px;
+    box-sizing: border-box;
 }
 
 header img {
@@ -14,4 +19,9 @@ header a {
     font-weight: 700;
     text-decoration: none;
     color: inherit;
+}
+
+.header__main {
+    display: flex;
+    align-items: center;
 }
