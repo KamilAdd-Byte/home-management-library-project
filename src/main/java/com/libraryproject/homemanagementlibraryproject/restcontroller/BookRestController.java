@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://tranquil-falls-99081.herokuapp.com")
+@CrossOrigin(origins = "*")
 public class BookRestController {
 
     @Autowired
