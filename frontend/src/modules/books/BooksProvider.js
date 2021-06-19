@@ -58,30 +58,29 @@ const BooksProvider = ({children}) => {
         const deepCopy = JSON.parse(JSON.stringify(books));
         deepCopy[index] = book;
         try {
-            const response = await fetch(`http://localhost:8080/books/${deepCopy.id}`, {
+            const response = await fetch(`http://localhost:8080/books/${book.id}`, {
                 method: 'PUT',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(deepCopy)
+                body: JSON.stringify(book)
             })
 
             const newBook = await response.json();
 
-            setBooks(newBook)
+            setBooks(deepCopy)
         } catch(error){
             console.log(error);
         }
     }
 
-    useEffect(() => {
-        fetchBooks();
-    }, [])
+
 
     const value = useMemo(() => ({
         books,
         setBooks,
+        fetchBooks,
         getBook,
         addBook,
         editBook,

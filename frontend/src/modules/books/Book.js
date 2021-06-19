@@ -16,10 +16,15 @@ const Book = ({history, match}) => {
         status: 'AVAILABLE'
     });
 
+    const fetchBook = async () => {
+        const fetchedBook = await getBook(match.params.id);
+        setBook(fetchedBook);
+        return fetchedBook;
+    }
+
     useEffect(() => {
         if(match.params.id){
-            const book = getBook(match.params.id);
-            setBook(book);
+            fetchBook();
         }
     }, [])
 
