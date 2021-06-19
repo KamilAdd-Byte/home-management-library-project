@@ -55,10 +55,9 @@ const BooksProvider = ({children}) => {
 
     const editBook = async (book) => {
         const index = books.map(book => book.id).indexOf(book.id);
-        const deepCopy = JSON.parse(JSON.stringify(books));
-        deepCopy[index] = book;
+
         try {
-            const response = await fetch(`http://localhost:8080/books/${book.id}`, {
+            const response = await fetch(`http://localhost:8080/book`, {
                 method: 'PUT',
                 headers: {
                     Accept: 'application/json',
@@ -66,8 +65,10 @@ const BooksProvider = ({children}) => {
                 },
                 body: JSON.stringify(book)
             })
-
             const newBook = await response.json();
+            const deepCopy = JSON.parse(JSON.stringify(books));
+
+            deepCopy[index] = newBook;
 
             setBooks(deepCopy)
         } catch(error){
