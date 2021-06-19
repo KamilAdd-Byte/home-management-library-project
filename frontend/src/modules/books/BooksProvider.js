@@ -8,13 +8,13 @@ export const BooksContext = createContext({
 const BooksProvider = ({children}) => {
     const [books, setBooks] = useState([])
     const fetchBooks = async () => {
-        const response = await fetch('http://localhost:8080/books');
+        const response = await fetch('https://tranquil-falls-99081.herokuapp.com/books');
         const books = await response.json();
         setBooks(books)
     }
 
     const getBook = async (id) => {
-        const response = await fetch(`http://localhost:8080/books/${id}`);
+        const response = await fetch(`https://tranquil-falls-99081.herokuapp.com//books/${id}`);
         return await response.json();
     }
 
@@ -22,7 +22,7 @@ const BooksProvider = ({children}) => {
         const newBooksList = books.filter(book => book.id !== id);
 
         try {
-            await fetch(`http://localhost:8080/books/${id}`, {
+            await fetch(`https://tranquil-falls-99081.herokuapp.com/books/${id}`, {
                 method: 'DELETE',
             })
             setBooks(newBooksList)
@@ -33,7 +33,7 @@ const BooksProvider = ({children}) => {
 
     const addBook = async (book) => {
         try {
-            const response = await fetch('http://localhost:8080/book', {
+            const response = await fetch('https://tranquil-falls-99081.herokuapp.com//book', {
                 method: 'POST',
                 body: JSON.stringify(book),
                 headers: {
@@ -58,7 +58,7 @@ const BooksProvider = ({children}) => {
         const deepCopy = JSON.parse(JSON.stringify(books));
         deepCopy[index] = book;
         try {
-            const response = await fetch(`http://localhost:8080/books/${book.id}`, {
+            const response = await fetch(`https://tranquil-falls-99081.herokuapp.com/${book.id}`, {
                 method: 'PUT',
                 headers: {
                     Accept: 'application/json',
