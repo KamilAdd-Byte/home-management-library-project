@@ -5,7 +5,7 @@ import {BooksContext} from "./BooksProvider";
 import Button from "../../components/Button";
 
 const Books = () => {
-    const {books, fetchBooks, deleteBook} = useContext(BooksContext)
+    const {books, fetchBooks, sortColumn, deleteBook} = useContext(BooksContext)
 
     const onDelete = (id) => deleteBook(id);
 
@@ -13,15 +13,17 @@ const Books = () => {
         fetchBooks();
     }, [])
 
+    const onSort = (columnName) => sortColumn(columnName);
+
     return (
         <table>
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Status</th>
-                <th>Description</th>
+                <th onClick={() => onSort('id')}>Id</th>
+                <th onClick={() => onSort('title')}>Title</th>
+                <th onClick={() => onSort('author')}>Author</th>
+                <th onClick={() => onSort('status')}>Status</th>
+                <th onClick={() => onSort('description')}>Description</th>
                 <th>Actions</th>
             </tr>
             </thead>

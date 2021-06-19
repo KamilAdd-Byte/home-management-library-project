@@ -76,6 +76,13 @@ const BooksProvider = ({children}) => {
         }
     }
 
+    const sortBooksByColumn = (columnName) => {
+        const deepCopy = JSON.parse(JSON.stringify(books));
+        setBooks([]);
+        const sorted =  deepCopy.sort((a, b) => a[columnName] > b[columnName] ? 1 : -1)
+
+        setBooks(sorted);
+    }
 
 
     const value = useMemo(() => ({
@@ -86,6 +93,7 @@ const BooksProvider = ({children}) => {
         addBook,
         editBook,
         deleteBook,
+        sortColumn: sortBooksByColumn,
         totalCount: books.length
     }), [books])
 
