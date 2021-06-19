@@ -1,0 +1,22 @@
+{
+  "name": "spio-project",
+  "version": "1.0.0",
+  "description": "project",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KamilAdd-Byte/home-management-library-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KamilAdd-Byte/home-management-library-project/issues"
+  },
+  "homepage": "https://github.com/KamilAdd-Byte/home-management-library-project#readme"
+}
