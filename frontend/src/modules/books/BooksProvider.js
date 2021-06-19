@@ -14,7 +14,7 @@ const BooksProvider = ({children}) => {
     }
 
     const getBook = async (id) => {
-        const response = await fetch(`https://tranquil-falls-99081.herokuapp.com//books/${id}`);
+        const response = await fetch(`https://tranquil-falls-99081.herokuapp.com/books/${id}`);
         return await response.json();
     }
 
