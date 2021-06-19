@@ -7,10 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "npm start"
   },
   "repository": {
     "type": "git",
