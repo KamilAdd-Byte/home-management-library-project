@@ -13,6 +13,11 @@ const BooksProvider = ({children}) => {
         setBooks(books)
     }
 
+    const getBook = async (id) => {
+        const response = await fetch(`http://localhost:8080/books/${id}`);
+        return await response.json();
+    }
+
     const deleteBook = async (id) => {
         const newBooksList = books.filter(book => book.id !== id);
 
@@ -53,12 +58,18 @@ const BooksProvider = ({children}) => {
         const deepCopy = JSON.parse(JSON.stringify(books));
         deepCopy[index] = book;
         try {
-            await fetch(`http://localhost:8080/books/${book.id}`, {
+            const response = await fetch(`http://localhost:8080/books/${deepCopy.id}`, {
                 method: 'PUT',
-                body: JSON.stringify(book)
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(deepCopy)
             })
 
-            setBooks(deepCopy)
+            const newBook = await response.json();
+
+            setBooks(newBook)
         } catch(error){
             console.log(error);
         }
@@ -71,6 +82,7 @@ const BooksProvider = ({children}) => {
     const value = useMemo(() => ({
         books,
         setBooks,
+        getBook,
         addBook,
         editBook,
         deleteBook,

@@ -6,6 +6,7 @@ import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,8 @@ public class BookRestController {
      * Adds a new book to the db from the request body.
      * @param book book to saved
      */
-    @PostMapping(path = "/book", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/book", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookDto> addBook(@RequestBody BookDto book) {
         if (!bookValidator.areAllRequiredFieldsNotNull(book)) {
             // TODO: 13.06.2021
