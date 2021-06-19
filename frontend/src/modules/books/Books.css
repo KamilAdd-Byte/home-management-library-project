@@ -15,5 +15,6 @@ th, td {
 
 th {
     font-weight: 700;
+    cursor: pointer;
 }
 
