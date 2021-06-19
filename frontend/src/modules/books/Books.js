@@ -5,10 +5,10 @@ import {BooksContext} from "./BooksProvider";
 import Button from "../../components/Button";
 
 const Books = () => {
-    const {books} = useContext(BooksContext)
+    const {books, editBook, deleteBook} = useContext(BooksContext)
 
-    const editBook = () => {};
-    const deleteBook = () => {};
+    const onEdit = (id) => editBook(id);
+    const onDelete = (id) => deleteBook(id);
 
     return (
         <table>
@@ -31,8 +31,8 @@ const Books = () => {
                     <td>{book.status}</td>
                     <td>{book.description}</td>
                     <td>
-                        <Button href={`/edit/${book.id}`} text="Edit" method={editBook} />
-                        <Button text="Delete" method={deleteBook} />
+                        <Button href={`/edit/${book.id}`} text="Edit" method={() => onEdit(book.id)} />
+                        <Button text="Delete" method={() => onDelete(book.id)} />
                     </td>
                 </tr>
             ))}

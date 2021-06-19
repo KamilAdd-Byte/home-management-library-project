@@ -13,26 +13,55 @@ const BooksProvider = ({children}) => {
         setBooks(books)
     }
 
-    const deleteBook = (id) => {
+    const deleteBook = async (id) => {
         const newBooksList = books.filter(book => book.id !== id);
-        setBooks(newBooksList)
+
+        try {
+            await fetch(`http://localhost:8080/books/${id}`, {
+                method: 'DELETE',
+            })
+            setBooks(newBooksList)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const addBook = async (book) => {
         try {
-            await fetch('http://localhost:8080/book', {
+            const response = await fetch('http://localhost:8080/book', {
                 method: 'POST',
-                body: JSON.stringify(book)
+                body: JSON.stringify(book),
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
             })
+            const newBook = await response.json();
+
 
             setBooks([
                 ...books,
-                book
+                newBook
             ])
         } catch(error){
             console.log(error);
         }
+    }
 
+    const editBook = async (book) => {
+        const index = books.map(book => book.id).indexOf(book.id);
+        const deepCopy = JSON.parse(JSON.stringify(books));
+        deepCopy[index] = book;
+        try {
+            await fetch(`http://localhost:8080/books/${book.id}`, {
+                method: 'PUT',
+                body: JSON.stringify(book)
+            })
+
+            setBooks(deepCopy)
+        } catch(error){
+            console.log(error);
+        }
     }
 
     useEffect(() => {
@@ -43,6 +72,8 @@ const BooksProvider = ({children}) => {
         books,
         setBooks,
         addBook,
+        editBook,
+        deleteBook,
         totalCount: books.length
     }), [books])
 
