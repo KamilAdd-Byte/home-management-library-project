@@ -54,4 +54,10 @@ public class BookControllerImpl implements BookController {
         bookService.deletedBook(id,book);
         return "redirect:/";
     }
+    @GetMapping("/showEditBook/{id}")
+    public String editBookById (@PathVariable("id") Long id,Model model){
+        BookDto book = bookService.getBookById(id);
+        model.addAttribute("book",book);
+        return "update_book";
+    }
 }

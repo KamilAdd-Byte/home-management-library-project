@@ -8,7 +8,9 @@ export const BooksContext = createContext({
 const BooksProvider = ({children}) => {
     const [books, setBooks] = useState([])
     const fetchBooks = () => {
-        const books = fetch('/books');
+        fetch('http://localhost:8080/books')
+            .then(response => response.json())
+            .then(data => console.log(data));
     }
 
     useEffect(() => {
