@@ -47,7 +47,7 @@ public class BookRestController {
      * Deletes a book with the specified id.
      * @param id id of the book to be deleted
      */
-    @DeleteMapping(value = "/book/{id}")
+    @DeleteMapping(value = "/books/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deletedBook (@PathVariable ("id") Long id) {
         bookService.deleteBook(id);
@@ -58,9 +58,9 @@ public class BookRestController {
      * @param book book with changes
      * @return response entity with body with updated book
      */
-    @PutMapping(value = "book")
+    @PutMapping(value = "books/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
+    public ResponseEntity<BookDto> updateBook (@PathVariable ("id") Long id, @RequestBody BookDto book){
         BookDto updateBook = bookService.updateBook(book);
         return ResponseEntity.ok().body(updateBook);
     }
