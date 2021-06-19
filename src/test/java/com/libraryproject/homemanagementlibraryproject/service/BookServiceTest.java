@@ -100,7 +100,7 @@ class BookServiceTest {
         return book;
     }
     @Test
-    public void shouldDeleteBookById(){
+    void shouldDeleteBookById(){
         //given
         // given
         BookDto book1 = createBookDto1();

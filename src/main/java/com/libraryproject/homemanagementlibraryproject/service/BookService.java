@@ -3,6 +3,7 @@ package com.libraryproject.homemanagementlibraryproject.service;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 
+import java.awt.print.Book;
 import java.util.List;
 
 public interface BookService {
@@ -41,7 +42,7 @@ public interface BookService {
      * @param bookId id of the book to be borrowed
      * @param borrower person borrowing the book
      */
-    void lendBook(Long bookId, PersonDto borrower);
+    BookDto lendBook(Long bookId, PersonDto borrower);
 
     /**
      * Updates the provided book in the database.
