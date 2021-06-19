@@ -70,4 +70,10 @@ public class BookRestController {
         BookDto lentBook = this.bookService.lendBook(id, person);
         return ResponseEntity.ok().body(lentBook);
     }
+
+    @GetMapping(value = "books/{id}")
+    public ResponseEntity<BookDto> getBook(@PathVariable ("id") Long id) {
+        BookDto book = bookService.getBookById(id);
+        return ResponseEntity.ok().body(book);
+    }
 }
