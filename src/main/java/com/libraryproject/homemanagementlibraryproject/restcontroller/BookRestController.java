@@ -49,7 +49,7 @@ public class BookRestController {
      * Deletes a book with the specified id.
      * @param id id of the book to be deleted
      */
-    @DeleteMapping(value = "/book/{id}")
+    @DeleteMapping(value = "/books/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deletedBook (@PathVariable ("id") Long id) {
         bookService.deleteBook(id);
