@@ -13,6 +13,11 @@ const BooksProvider = ({children}) => {
         setBooks(books)
     }
 
+    const getBook = async (id) => {
+        const response = await fetch(`http://localhost:8080/books/${id}`);
+        return await response.json();
+    }
+
     const deleteBook = async (id) => {
         const newBooksList = books.filter(book => book.id !== id);
 
@@ -53,10 +58,16 @@ const BooksProvider = ({children}) => {
         const deepCopy = JSON.parse(JSON.stringify(books));
         deepCopy[index] = book;
         try {
-            await fetch(`http://localhost:8080/books/${book.id}`, {
+            const response = await fetch(`http://localhost:8080/books/${book.id}`, {
                 method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(book)
             })
+
+            const newBook = await response.json();
 
             setBooks(deepCopy)
         } catch(error){
@@ -64,13 +75,13 @@ const BooksProvider = ({children}) => {
         }
     }
 
-    useEffect(() => {
-        fetchBooks();
-    }, [])
+
 
     const value = useMemo(() => ({
         books,
         setBooks,
+        fetchBooks,
+        getBook,
         addBook,
         editBook,
         deleteBook,

@@ -1,14 +1,17 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import './Books.css';
 import {BooksContext} from "./BooksProvider";
 import Button from "../../components/Button";
 
 const Books = () => {
-    const {books, editBook, deleteBook} = useContext(BooksContext)
+    const {books, fetchBooks, deleteBook} = useContext(BooksContext)
 
-    const onEdit = (id) => editBook(id);
     const onDelete = (id) => deleteBook(id);
+
+    useEffect(() => {
+        fetchBooks();
+    }, [])
 
     return (
         <table>
@@ -31,7 +34,7 @@ const Books = () => {
                     <td>{book.status}</td>
                     <td>{book.description}</td>
                     <td>
-                        <Button href={`/edit/${book.id}`} text="Edit" method={() => onEdit(book.id)} />
+                        <Button href={`/edit/${book.id}`} text="Edit" />
                         <Button text="Delete" method={() => onDelete(book.id)} />
                     </td>
                 </tr>

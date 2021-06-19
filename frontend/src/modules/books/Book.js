@@ -3,11 +3,11 @@ import { withRouter } from 'react-router-dom';
 import Button from "../../components/Button";
 
 import './Book.css';
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {BooksContext} from "./BooksProvider";
 
-const Book = ({history}) => {
-    const {addBook} = useContext(BooksContext)
+const Book = ({history, match}) => {
+    const {addBook, editBook, getBook} = useContext(BooksContext)
 
     const [book, setBook] = useState({
         title: '',
@@ -15,6 +15,18 @@ const Book = ({history}) => {
         description: '',
         status: 'AVAILABLE'
     });
+
+    const fetchBook = async () => {
+        const fetchedBook = await getBook(match.params.id);
+        setBook(fetchedBook);
+        return fetchedBook;
+    }
+
+    useEffect(() => {
+        if(match.params.id){
+            fetchBook();
+        }
+    }, [])
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -26,7 +38,11 @@ const Book = ({history}) => {
 
     const handleSave = () => {
         try{
-            addBook(book);
+            if(match.params.id){
+                editBook(book)
+            }else{
+                addBook(book);
+            }
             history.push('/')
         }catch(error) {
             console.log(error);
