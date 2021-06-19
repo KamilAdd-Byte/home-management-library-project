@@ -1,16 +1,34 @@
 import Button from "../../components/Button";
 
 import './Book.css';
+import {useContext, useState} from "react";
+import {BooksContext} from "./BooksProvider";
 
 const Book = () => {
-    const saveBook = () => {};
+    const {addBook} = useContext(BooksContext)
+
+    const [book, setBook] = useState({
+        title: '',
+        author: '',
+        description: ''
+    });
+
+    const handleChange = (e) => {
+        const name = e.target.name;
+        setBook({
+            ...book,
+            [name]: e.target.value
+        })
+
+    }
+
     return (
         <form>
-            <input type="text" placeholder="Title" />
-            <input type="text" placeholder="Author" />
-            <input type="text" placeholder="Description" />
+            <input name="title" type="text" value={book.title} onChange={handleChange} placeholder="Title" />
+            <input name="author" type="text" value={book.author} onChange={handleChange} placeholder="Author" />
+            <input name="description" type="text" value={book.description} onChange={handleChange} placeholder="Description" />
             <div className="form__button">
-                <Button text="Save" method={saveBook} />
+                <Button text="Save" method={() => addBook(book)} />
             </div>
         </form>
     )

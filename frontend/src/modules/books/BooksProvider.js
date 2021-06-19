@@ -7,10 +7,32 @@ export const BooksContext = createContext({
 
 const BooksProvider = ({children}) => {
     const [books, setBooks] = useState([])
-    const fetchBooks = () => {
-        fetch('http://localhost:8080/books')
-            .then(response => response.json())
-            .then(data => console.log(data));
+    const fetchBooks = async () => {
+        const response = await fetch('http://localhost:8080/books');
+        const books = await response.json();
+        setBooks(books)
+    }
+
+    const deleteBook = (id) => {
+        const newBooksList = books.filter(book => book.id !== id);
+        setBooks(newBooksList)
+    }
+
+    const addBook = async (book) => {
+        try {
+            await fetch('http://localhost:8080/book', {
+                method: 'POST',
+                body: JSON.stringify(book)
+            })
+
+            setBooks([
+                ...books,
+                book
+            ])
+        } catch(error){
+            console.log(error);
+        }
+
     }
 
     useEffect(() => {
@@ -20,6 +42,7 @@ const BooksProvider = ({children}) => {
     const value = useMemo(() => ({
         books,
         setBooks,
+        addBook,
         totalCount: books.length
     }), [books])
 

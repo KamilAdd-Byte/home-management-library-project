@@ -7,6 +7,9 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
   <style>
+    body {
+      background-color: #f0f0f0;
+    }
     #container {
       padding: 20px;
     }
@@ -18,15 +21,15 @@
     #footer
     {
       clear: both;
-      background-color: mediumpurple;
-      font-size: 18px;
+      background-color: #0f4659;
+      font-size: 12px;
       color: white;
       text-align: center;
     }
 
     #navbar {
       padding: 20px;
-      background-color: mediumpurple;
+      background-color: #0f4659;
       color: white;
       text-align: center;
     }
@@ -36,12 +39,9 @@
 </head>
 <body>
 <div id="container" th:align="center">
-  <div id="logoType">
-    <img class="d-inline-block align-top" height="30" src="/home/kamillodzinski/LOCAL repositories GIT/SPIO PROJECT/src/main/resources/logo.png" width="30">
-  </div>
   <nav id="navbar">
     <a class="navbar-brand">
-      Home Management Library Project
+      <h3>Home Management Library Project</h3>
     </a>
   </nav>
   <div id="contentContainer" th:align="center">
@@ -51,14 +51,14 @@
       <input class="form-control mb-4 col-4" placeholder="Author" th:field="*{author}" type="text">
       <!--			<input type="text" th:fields="*{status}" placeholder="Status" class="form-control mb-4 col-4">-->
       <input class="form-control mb-4 col-4" placeholder="Description" th:field="*{description}" type="text">
-      <button class="bg-primary btn-lg" type="submit"> Add</button>
+      <button class="bg-primary btn-lg" type="submit"> Edit </button>
     </form>
   </div>
   <div th:align="center">
     <a th:href="@{/index}"> Strona główna</a>
   </div>
   <div id="footer">
-    <h1> 2021 Home Management Library Project</h1>
+    <h6> &#174;2021 Home Management Library Project</h6>
   </div>
 </div>
 </body>
