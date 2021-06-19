@@ -65,11 +65,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void lendBook(Long bookId, PersonDto borrower) {
+    public BookDto lendBook(Long bookId, PersonDto borrower) {
         BookEntity bookEntity = bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("Book with given id does not exist"));
         bookEntity.setStatus(BookStatus.BORROWED);
         bookEntity.setBorrower(personMapper.mapToEntity(borrower));
-        bookRepository.save(bookEntity);
+        return bookMapper.mapToDto(bookRepository.save(bookEntity));
     }
 
 }

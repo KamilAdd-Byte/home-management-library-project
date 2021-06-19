@@ -1,6 +1,7 @@
 package com.libraryproject.homemanagementlibraryproject.restcontroller;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
+import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,11 @@ public class BookRestController {
     public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
         BookDto updateBook = bookService.updateBook(book);
         return ResponseEntity.ok().body(updateBook);
+    }
+
+    @PutMapping(value = "book/{id}")
+    public ResponseEntity<BookDto> lendBook(@PathVariable ("id") Long id, @RequestBody PersonDto person) {
+        BookDto lentBook = this.bookService.lendBook(id, person);
+        return ResponseEntity.ok().body(lentBook);
     }
 }
