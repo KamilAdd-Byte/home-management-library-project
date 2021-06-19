@@ -17,7 +17,5 @@ public class BookDto {
 
     private String description;
 
-    private PersonDto owner;
-
     private PersonDto borrower;
 }

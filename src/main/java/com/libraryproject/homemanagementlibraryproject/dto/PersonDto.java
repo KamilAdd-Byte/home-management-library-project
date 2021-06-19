@@ -13,6 +13,4 @@ public class PersonDto {
 
     private String lastName;
 
-    private String address;
-
 }
