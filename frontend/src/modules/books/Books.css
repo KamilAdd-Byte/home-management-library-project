@@ -1,0 +1,19 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+tr {
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 15px 0;
+    text-align: center;
+}
+
+th {
+    font-weight: 700;
+}
+

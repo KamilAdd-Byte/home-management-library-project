@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookRestController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class BookRestController {
      * Adds a new book to the db from the request body.
      * @param book book to saved
      */
-    @PostMapping("/book")
+    @PostMapping(path = "/book", consumes = "application/json", produces = "application/json")
     public ResponseEntity<BookDto> addBook(@RequestBody BookDto book) {
         if (!bookValidator.areAllRequiredFieldsNotNull(book)) {
             // TODO: 13.06.2021
