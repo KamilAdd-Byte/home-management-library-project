@@ -2,6 +2,7 @@ package com.libraryproject.homemanagementlibraryproject.service;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
+import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 
 import java.awt.print.Book;
 import java.util.List;
@@ -48,4 +49,8 @@ public interface BookService {
      * Updates the provided book in the database.
      */
     BookDto updateBook(BookDto book);
+
+    BookCategory getOneCategoryBook(String name);
+
+    List<BookCategory> getAllCategoryBook();
 }

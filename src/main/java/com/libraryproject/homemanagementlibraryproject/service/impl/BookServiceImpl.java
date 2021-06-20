@@ -3,6 +3,7 @@ package com.libraryproject.homemanagementlibraryproject.service.impl;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 import com.libraryproject.homemanagementlibraryproject.entity.BookEntity;
+import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import com.libraryproject.homemanagementlibraryproject.mapper.BookMapper;
 import com.libraryproject.homemanagementlibraryproject.mapper.PersonMapper;
@@ -11,7 +12,7 @@ import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -63,6 +64,19 @@ public class BookServiceImpl implements BookService {
         BookEntity updateBook = bookRepository.save(bookMapper.mapToEntity(book));
         return bookMapper.mapToDto(updateBook);
     }
+
+    @Override
+    public BookCategory getOneCategoryBook(String name) {
+        return BookCategory.valueOf(name);
+    }
+
+
+    @Override
+    public List<BookCategory> getAllCategoryBook() {
+        List<BookCategory> categories = new ArrayList<BookCategory>();
+        return categories;
+    }
+
 
     @Override
     public BookDto lendBook(Long bookId, PersonDto borrower) {

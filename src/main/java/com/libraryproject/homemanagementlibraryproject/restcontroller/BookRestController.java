@@ -2,6 +2,8 @@ package com.libraryproject.homemanagementlibraryproject.restcontroller;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
+import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
+import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,15 +69,31 @@ public class BookRestController {
         return ResponseEntity.ok().body(updateBook);
     }
 
-    @PutMapping(value = "book/{id}")
+    @PutMapping(value = "book/{id}/borrowed")
     public ResponseEntity<BookDto> lendBook(@PathVariable ("id") Long id, @RequestBody PersonDto person) {
-        BookDto lentBook = this.bookService.lendBook(id, person);
-        return ResponseEntity.ok().body(lentBook);
+        BookDto lendBook = this.bookService.lendBook(id, person);
+        lendBook.setStatus(BookStatus.BORROWED);
+        return ResponseEntity.ok().body(lendBook);
     }
 
     @GetMapping(value = "books/{id}")
     public ResponseEntity<BookDto> getBook(@PathVariable ("id") Long id) {
         BookDto book = bookService.getBookById(id);
         return ResponseEntity.ok().body(book);
+    }
+
+    /**
+     * Returns a list of all category books.
+     */
+    @GetMapping("/categories")
+    public ResponseEntity<List<BookCategory>> getCategoryBooks() {
+        List<BookCategory> books = bookService.getAllCategoryBook();
+        return ResponseEntity.ok().body(books);
+    }
+
+    @GetMapping("/books/{bookCategory}")
+    public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("bookCategory") BookCategory bookCategory) {
+        BookCategory booksCategory = bookService.getOneCategoryBook(bookCategory.toString());
+        return ResponseEntity.ok().body(booksCategory);
     }
 }

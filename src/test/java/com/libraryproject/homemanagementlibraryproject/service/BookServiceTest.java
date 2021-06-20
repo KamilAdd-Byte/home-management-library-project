@@ -142,4 +142,9 @@ class BookServiceTest {
         assertThat(kids).isEqualTo(BookCategory.KIDS);
         assertThat(book.getBookCategory()).isEqualTo(BookCategory.KIDS);
     }
+
+    @Test
+    void allCategoryBook() {
+
+    }
 }

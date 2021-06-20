@@ -16,10 +16,10 @@ public class PersonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String lastName;
 
 }
