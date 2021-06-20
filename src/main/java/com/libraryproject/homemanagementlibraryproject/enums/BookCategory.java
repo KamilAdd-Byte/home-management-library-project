@@ -3,6 +3,8 @@ package com.libraryproject.homemanagementlibraryproject.enums;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @ToString
 public enum BookCategory {
@@ -26,4 +28,6 @@ public enum BookCategory {
     public String getDescription() {
         return description;
     }
+
+    public List<BookCategory> allCategoryBook;
 }
