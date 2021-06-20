@@ -2,8 +2,10 @@ package com.libraryproject.homemanagementlibraryproject.service;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
+import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,7 @@ import javax.transaction.Transactional;
 import java.awt.print.Book;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -85,6 +88,7 @@ class BookServiceTest {
     private BookDto createBookDto1() {
         BookDto book = new BookDto();
         book.setAuthor("Adam");
+        book.setBookCategory(BookCategory.CRIMINAL);
         book.setStatus(BookStatus.AVAILABLE);
         book.setDescription("abcd");
         book.setTitle("Tytul12345");
@@ -94,6 +98,7 @@ class BookServiceTest {
     private BookDto createBookDto2() {
         BookDto book = new BookDto();
         book.setAuthor("Jaś");
+        book.setBookCategory(BookCategory.FANTASTIC);
         book.setStatus(BookStatus.AVAILABLE);
         book.setDescription("abcd11");
         book.setTitle("Tytul54321");
@@ -101,7 +106,6 @@ class BookServiceTest {
     }
     @Test
     void shouldDeleteBookById(){
-        //given
         // given
         BookDto book1 = createBookDto1();
         BookDto addedBook1 = bookService.addBook(book1);
@@ -122,5 +126,20 @@ class BookServiceTest {
         person.setFirstName("Tom");
         person.setLastName("Smith");
         return person;
+    }
+
+    @Test
+    @DisplayName("should category book is not null")
+    void shouldCategoryBookCheck(){
+        //given
+        BookDto book = new BookDto();
+
+        BookCategory kids = BookCategory.KIDS;
+        book.setBookCategory(kids);
+
+        //then
+        assertNotNull(kids);
+        assertThat(kids).isEqualTo(BookCategory.KIDS);
+        assertThat(book.getBookCategory()).isEqualTo(BookCategory.KIDS);
     }
 }
