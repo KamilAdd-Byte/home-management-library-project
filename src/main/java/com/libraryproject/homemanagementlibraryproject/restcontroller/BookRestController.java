@@ -86,8 +86,9 @@ public class BookRestController {
      * Returns a list of all category books.
      */
     @GetMapping("/categories")
-    public List<BookCategory> getAllCategoryBooks(@RequestParam("categories") BookCategory bookCategory) {
-        return bookService.getAllCategoryBook();
+    public ResponseEntity<List<BookCategory>> getCategoryBooks() {
+        List<BookCategory> books = bookService.getAllCategoryBook();
+        return ResponseEntity.ok().body(books);
     }
 
     @GetMapping("/books/{bookCategory}")
