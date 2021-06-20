@@ -18,3 +18,23 @@ th {
     cursor: pointer;
 }
 
+th img {
+    max-width: 10px;
+    max-height: 10px;
+    margin-left: 10px;
+}
+
+.books__filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.status__available {
+    color: #18c118;
+}
+
+.status__notAvailable {
+    color: #bc0000;
+}
