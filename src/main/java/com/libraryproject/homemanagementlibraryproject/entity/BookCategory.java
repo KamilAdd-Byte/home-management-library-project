@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import javax.persistence.*;
 
-
+@Entity
 @Getter
 @Setter
 @ToString
@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class BookCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false,length = 30)
     private String name;
