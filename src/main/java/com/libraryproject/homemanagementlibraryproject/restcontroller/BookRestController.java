@@ -24,6 +24,9 @@ public class BookRestController {
     @Autowired
     private BookValidator bookValidator;
 
+    @Autowired
+    private  bookCategory;
+
     /**
      * Returns a list of all books in the db as json.
      */
@@ -86,7 +89,7 @@ public class BookRestController {
      * Returns a list of all category books.
      */
     @GetMapping("/categories")
-    public ResponseEntity<List<BookCategory>> getCategoryBooks() {
+    public ResponseEntity<List<com.libraryproject.homemanagementlibraryproject.entity.BookCategory>> getCategoryBooks() {
         List<BookCategory> books = bookService.getAllCategoryBook();
         return ResponseEntity.ok().body(books);
     }
