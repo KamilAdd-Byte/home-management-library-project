@@ -23,10 +23,10 @@ public class BookEntity {
     @Column(nullable = false,length = 30)
     private String author;
 
-
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private BookStatus status;
+
 
     private String description;
 
