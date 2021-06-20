@@ -1,4 +1,4 @@
-import {createContext, useEffect, useMemo, useState} from "react";
+import {createContext, useMemo, useState} from "react";
 
 export const BooksContext = createContext({
     totalCount: 0,
@@ -103,6 +103,24 @@ const BooksProvider = ({children}) => {
         }
     }
 
+    const borrowBook = async (id) => {
+        try {
+            const response = await fetch(`https://react-app-spio.herokuapp.com/book/${id}/borrowed`, {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({firsName: 'Jan', lastName: 'Kowalski'})
+            })
+            const newBook = await response.json();
+
+            console.log(newBook);
+        } catch(error){
+            console.log(error);
+        }
+    }
+
 
     const value = useMemo(() => ({
         books,
@@ -113,6 +131,7 @@ const BooksProvider = ({children}) => {
         editBook,
         deleteBook,
         filterByName,
+        borrowBook,
         sortColumn: sortBooksByColumn,
         totalCount: books.length
     }), [books])

@@ -8,7 +8,7 @@ import Search from "../../components/Search";
 import Categories from "../../components/Categories";
 
 const Books = () => {
-    const {books, fetchBooks, sortColumn, deleteBook} = useContext(BooksContext)
+    const {books, fetchBooks, borrowBook, sortColumn, deleteBook} = useContext(BooksContext)
     const [bookToRemove, setBookToRemove] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -77,7 +77,7 @@ const Books = () => {
                         <td className={setStatusColor(book.status)}>{book.status}</td>
                         <td>{book.description}</td>
                         <td>
-                            <Button text="Borrow" />
+                            <Button text="Borrow" method={() => borrowBook(book.id)}/>
                             <Button href={`/edit/${book.id}`} text="Edit" />
                             <Button text="Delete" method={() => onDelete(book.id)} />
                         </td>
