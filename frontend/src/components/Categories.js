@@ -13,7 +13,7 @@ const Categories = () => {
         <div className="categories__handler">
             <label>Categories</label>
             <select>
-                {categories.map(category => (<option value={category}>{category}</option>))}
+                {categories.map(category => (<option value={category.name}>{category.name}</option>))}
             </select>
         </div>
 
