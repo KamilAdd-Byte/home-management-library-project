@@ -1,5 +1,6 @@
 package com.libraryproject.homemanagementlibraryproject.entity;
 
+import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,9 @@ public class BookEntity {
 
     @Column(nullable = false,length = 30)
     private String author;
+
+    @Enumerated(EnumType.STRING)
+    private BookCategory bookCategory;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
