@@ -1,0 +1,13 @@
+.categories__handler {
+
+}
+
+.categories__handler label {
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+.categories__handler select {
+    height: 40px;
+    width: 120px;
+}

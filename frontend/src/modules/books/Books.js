@@ -4,6 +4,8 @@ import './Books.css';
 import {BooksContext} from "./BooksProvider";
 import Button from "../../components/Button";
 import ConfirmationDialog from "../../components/ConfirmationDialog";
+import Search from "../../components/Search";
+import Categories from "../../components/Categories";
 
 const Books = () => {
     const {books, fetchBooks, sortColumn, deleteBook} = useContext(BooksContext)
@@ -32,16 +34,37 @@ const Books = () => {
         setBookToRemove(null);
     }
 
+    const setStatusColor = (status) => status === 'AVAILABLE' ? 'status__available' : 'status__notAvailable';
+
     return (
         <>
+            <div className="books__filters">
+                <Search />
+                <Categories />
+            </div>
             <table>
                 <thead>
                 <tr>
-                    <th onClick={() => onSort('id')}>Id</th>
-                    <th onClick={() => onSort('title')}>Title</th>
-                    <th onClick={() => onSort('author')}>Author</th>
-                    <th onClick={() => onSort('status')}>Status</th>
-                    <th onClick={() => onSort('description')}>Description</th>
+                    <th onClick={() => onSort('id')}>
+                        Id
+                        <img alt="id" src={process.env.PUBLIC_URL + '/sortDown.svg'} />
+                    </th>
+                    <th onClick={() => onSort('title')}>
+                        Title
+                        <img alt="title" src={process.env.PUBLIC_URL + '/sortDown.svg'} />
+                    </th>
+                    <th onClick={() => onSort('author')}>
+                        Author
+                        <img alt="author" src={process.env.PUBLIC_URL + '/sortDown.svg'} />
+                    </th>
+                    <th onClick={() => onSort('status')}>
+                        Status
+                        <img alt="status" src={process.env.PUBLIC_URL + '/sortDown.svg'} />
+                    </th>
+                    <th onClick={() => onSort('description')}>
+                        Description
+                        <img alt="description" src={process.env.PUBLIC_URL + '/sortDown.svg'} />
+                    </th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -51,9 +74,10 @@ const Books = () => {
                         <td>{book.id}</td>
                         <td>{book.title}</td>
                         <td>{book.author}</td>
-                        <td>{book.status}</td>
+                        <td className={setStatusColor(book.status)}>{book.status}</td>
                         <td>{book.description}</td>
                         <td>
+                            <Button text="Borrow" />
                             <Button href={`/edit/${book.id}`} text="Edit" />
                             <Button text="Delete" method={() => onDelete(book.id)} />
                         </td>

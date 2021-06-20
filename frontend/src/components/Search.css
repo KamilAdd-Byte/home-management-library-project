@@ -1,0 +1,11 @@
+.search__handler {
+    display: flex;
+    box-sizing: border-box;
+    flex: 1;
+    align-items: center;
+}
+
+.search__handler label {
+    font-weight: 700;
+    margin-right: 16px;
+}

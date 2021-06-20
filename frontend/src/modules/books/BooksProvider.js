@@ -7,10 +7,12 @@ export const BooksContext = createContext({
 
 const BooksProvider = ({children}) => {
     const [books, setBooks] = useState([])
+    const [initialBooks, setInitialBooks] = useState([])
     const fetchBooks = async () => {
         const response = await fetch('http://localhost:8080/books');
         const books = await response.json();
         setBooks(books)
+        setInitialBooks(books);
     }
 
     const getBook = async (id) => {
@@ -25,7 +27,8 @@ const BooksProvider = ({children}) => {
             await fetch(`http://localhost:8080/books/${id}`, {
                 method: 'DELETE',
             })
-            setBooks(newBooksList)
+            setBooks(newBooksList);
+            setInitialBooks(books);
         } catch (error) {
             console.log(error);
         }
@@ -48,6 +51,8 @@ const BooksProvider = ({children}) => {
                 ...books,
                 newBook
             ])
+
+            setInitialBooks(books);
         } catch(error){
             console.log(error);
         }
@@ -70,7 +75,9 @@ const BooksProvider = ({children}) => {
 
             deepCopy[index] = newBook;
 
-            setBooks(deepCopy)
+            setBooks(deepCopy);
+
+            setInitialBooks(books);
         } catch(error){
             console.log(error);
         }
@@ -84,6 +91,16 @@ const BooksProvider = ({children}) => {
         setBooks(sorted);
     }
 
+    const filterByName = (value) => {
+        const deepCopy = JSON.parse(JSON.stringify(books));
+
+        if(value.length > 3){
+            setBooks(deepCopy.filter(book => book.title.includes(value)))
+        }else{
+            setBooks(initialBooks);
+        }
+    }
+
 
     const value = useMemo(() => ({
         books,
@@ -93,6 +110,7 @@ const BooksProvider = ({children}) => {
         addBook,
         editBook,
         deleteBook,
+        filterByName,
         sortColumn: sortBooksByColumn,
         totalCount: books.length
     }), [books])
