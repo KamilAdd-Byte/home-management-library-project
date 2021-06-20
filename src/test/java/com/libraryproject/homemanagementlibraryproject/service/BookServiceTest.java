@@ -2,7 +2,6 @@ package com.libraryproject.homemanagementlibraryproject.service;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
-import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 
-import java.awt.print.Book;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

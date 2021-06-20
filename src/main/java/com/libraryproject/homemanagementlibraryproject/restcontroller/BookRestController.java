@@ -2,8 +2,9 @@ package com.libraryproject.homemanagementlibraryproject.restcontroller;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
-import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
+import com.libraryproject.homemanagementlibraryproject.entity.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
+import com.libraryproject.homemanagementlibraryproject.service.BookCategoryService;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class BookRestController {
     private BookValidator bookValidator;
 
     @Autowired
-    private  bookCategory;
+    private BookCategoryService bookCategoryService;
 
     /**
      * Returns a list of all books in the db as json.
@@ -89,14 +90,14 @@ public class BookRestController {
      * Returns a list of all category books.
      */
     @GetMapping("/categories")
-    public ResponseEntity<List<com.libraryproject.homemanagementlibraryproject.entity.BookCategory>> getCategoryBooks() {
-        List<BookCategory> books = bookService.getAllCategoryBook();
+    public ResponseEntity<List<BookCategory>> getCategoryBooks() {
+        List<BookCategory> books = bookCategoryService.getAllCategoryBooks();
         return ResponseEntity.ok().body(books);
     }
 
-    @GetMapping("/books/{bookCategory}")
-    public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("bookCategory") BookCategory bookCategory) {
-        BookCategory booksCategory = bookService.getOneCategoryBook(bookCategory.toString());
+    @GetMapping("/books/{id}")
+    public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("id") BookCategory bookCategory) {
+        BookCategory booksCategory = bookCategoryService.getOneBook(bookCategory.getId());
         return ResponseEntity.ok().body(booksCategory);
     }
 }

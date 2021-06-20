@@ -6,4 +6,6 @@ import java.util.List;
 public interface BookCategoryService {
 
     List<BookCategory> getAllCategoryBooks();
+
+    BookCategory getOneBook(int id);
 }

@@ -3,7 +3,6 @@ package com.libraryproject.homemanagementlibraryproject.service.impl;
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
 import com.libraryproject.homemanagementlibraryproject.entity.BookEntity;
-import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import com.libraryproject.homemanagementlibraryproject.mapper.BookMapper;
 import com.libraryproject.homemanagementlibraryproject.mapper.PersonMapper;
@@ -63,18 +62,6 @@ public class BookServiceImpl implements BookService {
     public BookDto updateBook(BookDto book) {
         BookEntity updateBook = bookRepository.save(bookMapper.mapToEntity(book));
         return bookMapper.mapToDto(updateBook);
-    }
-
-    @Override
-    public BookCategory getOneCategoryBook(String name) {
-        return BookCategory.valueOf(name);
-    }
-
-
-    @Override
-    public List<BookCategory> getAllCategoryBook() {
-        List<BookCategory> categories = new ArrayList<BookCategory>();
-        return categories;
     }
 
 

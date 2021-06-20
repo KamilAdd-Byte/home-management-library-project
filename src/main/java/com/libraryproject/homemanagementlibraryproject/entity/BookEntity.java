@@ -1,6 +1,5 @@
 package com.libraryproject.homemanagementlibraryproject.entity;
 
-import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import lombok.Getter;
 import lombok.Setter;
