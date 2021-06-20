@@ -2,8 +2,9 @@ package com.libraryproject.homemanagementlibraryproject.restcontroller;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
-import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
+import com.libraryproject.homemanagementlibraryproject.entity.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
+import com.libraryproject.homemanagementlibraryproject.service.BookCategoryService;
 import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class BookRestController {
 
     @Autowired
     private BookValidator bookValidator;
+
+    @Autowired
+    private BookCategoryService bookCategoryService;
 
     /**
      * Returns a list of all books in the db as json.
@@ -87,13 +91,13 @@ public class BookRestController {
      */
     @GetMapping("/categories")
     public ResponseEntity<List<BookCategory>> getCategoryBooks() {
-        List<BookCategory> books = bookService.getAllCategoryBook();
+        List<BookCategory> books = bookCategoryService.getAllCategoryBooks();
         return ResponseEntity.ok().body(books);
     }
 
     @GetMapping("/books/{bookCategory}")
     public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("bookCategory") BookCategory bookCategory) {
-        BookCategory booksCategory = bookService.getOneCategoryBook(bookCategory.toString());
+        BookCategory booksCategory = bookCategoryService.getOneBook(bookCategory.getId());
         return ResponseEntity.ok().body(booksCategory);
     }
 }

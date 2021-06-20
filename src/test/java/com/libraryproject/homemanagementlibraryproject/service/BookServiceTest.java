@@ -2,7 +2,6 @@ package com.libraryproject.homemanagementlibraryproject.service;
 
 import com.libraryproject.homemanagementlibraryproject.dto.BookDto;
 import com.libraryproject.homemanagementlibraryproject.dto.PersonDto;
-import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 
-import java.awt.print.Book;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -88,7 +86,7 @@ class BookServiceTest {
     private BookDto createBookDto1() {
         BookDto book = new BookDto();
         book.setAuthor("Adam");
-        book.setBookCategory(BookCategory.CRIMINAL);
+
         book.setStatus(BookStatus.AVAILABLE);
         book.setDescription("abcd");
         book.setTitle("Tytul12345");
@@ -98,7 +96,6 @@ class BookServiceTest {
     private BookDto createBookDto2() {
         BookDto book = new BookDto();
         book.setAuthor("Jaś");
-        book.setBookCategory(BookCategory.FANTASTIC);
         book.setStatus(BookStatus.AVAILABLE);
         book.setDescription("abcd11");
         book.setTitle("Tytul54321");
@@ -128,23 +125,4 @@ class BookServiceTest {
         return person;
     }
 
-    @Test
-    @DisplayName("should category book is not null")
-    void shouldCategoryBookCheck(){
-        //given
-        BookDto book = new BookDto();
-
-        BookCategory kids = BookCategory.KIDS;
-        book.setBookCategory(kids);
-
-        //then
-        assertNotNull(kids);
-        assertThat(kids).isEqualTo(BookCategory.KIDS);
-        assertThat(book.getBookCategory()).isEqualTo(BookCategory.KIDS);
-    }
-
-    @Test
-    void allCategoryBook() {
-
-    }
 }

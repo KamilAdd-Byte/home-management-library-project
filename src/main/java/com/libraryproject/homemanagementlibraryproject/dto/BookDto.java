@@ -1,6 +1,5 @@
 package com.libraryproject.homemanagementlibraryproject.dto;
 
-import com.libraryproject.homemanagementlibraryproject.enums.BookCategory;
 import com.libraryproject.homemanagementlibraryproject.enums.BookStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,8 +12,6 @@ public class BookDto {
     private String title;
 
     private String author;
-
-    private BookCategory bookCategory;
 
     private BookStatus status;
 
