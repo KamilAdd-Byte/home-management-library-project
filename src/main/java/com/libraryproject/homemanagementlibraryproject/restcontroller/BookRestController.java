@@ -60,7 +60,7 @@ public class BookRestController {
      * @param book book with changes
      * @return response entity with body with updated book
      */
-    @PutMapping(value = "book")
+    @PutMapping(value = "books")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
         BookDto updateBook = bookService.updateBook(book);
