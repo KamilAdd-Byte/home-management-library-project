@@ -86,7 +86,7 @@ class BookServiceTest {
     private BookDto createBookDto1() {
         BookDto book = new BookDto();
         book.setAuthor("Adam");
-        book.setBookCategory(BookCategory.CRIMINAL);
+
         book.setStatus(BookStatus.AVAILABLE);
         book.setDescription("abcd");
         book.setTitle("Tytul12345");
@@ -96,7 +96,6 @@ class BookServiceTest {
     private BookDto createBookDto2() {
         BookDto book = new BookDto();
         book.setAuthor("Jaś");
-        book.setBookCategory(BookCategory.FANTASTIC);
         book.setStatus(BookStatus.AVAILABLE);
         book.setDescription("abcd11");
         book.setTitle("Tytul54321");
@@ -126,23 +125,4 @@ class BookServiceTest {
         return person;
     }
 
-    @Test
-    @DisplayName("should category book is not null")
-    void shouldCategoryBookCheck(){
-        //given
-        BookDto book = new BookDto();
-
-        BookCategory kids = BookCategory.KIDS;
-        book.setBookCategory(kids);
-
-        //then
-        assertNotNull(kids);
-        assertThat(kids).isEqualTo(BookCategory.KIDS);
-        assertThat(book.getBookCategory()).isEqualTo(BookCategory.KIDS);
-    }
-
-    @Test
-    void allCategoryBook() {
-
-    }
 }

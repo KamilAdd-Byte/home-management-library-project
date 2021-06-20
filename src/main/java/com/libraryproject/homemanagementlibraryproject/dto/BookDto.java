@@ -13,8 +13,6 @@ public class BookDto {
 
     private String author;
 
-    private BookCategory bookCategory;
-
     private BookStatus status;
 
     private String description;

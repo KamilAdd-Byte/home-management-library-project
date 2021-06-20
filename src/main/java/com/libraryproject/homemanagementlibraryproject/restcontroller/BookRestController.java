@@ -95,8 +95,8 @@ public class BookRestController {
         return ResponseEntity.ok().body(books);
     }
 
-    @GetMapping("/books/{id}")
-    public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("id") BookCategory bookCategory) {
+    @GetMapping("/books/{bookCategory}")
+    public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("bookCategory") BookCategory bookCategory) {
         BookCategory booksCategory = bookCategoryService.getOneBook(bookCategory.getId());
         return ResponseEntity.ok().body(booksCategory);
     }
