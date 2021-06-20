@@ -88,7 +88,6 @@ public class BookRestController {
     @GetMapping("/categories")
     public ResponseEntity<List<BookCategory>> getAllCategoryBooks(@RequestBody BookCategory bookCategory) {
         List<BookCategory> booksCategory = bookService.getAllCategoryBook();
-        booksCategory.forEach(BookCategory::getAllCategoryBook);
         return ResponseEntity.ok().body(booksCategory);
     }
 

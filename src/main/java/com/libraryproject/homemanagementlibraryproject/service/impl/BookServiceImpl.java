@@ -73,7 +73,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookCategory> getAllCategoryBook() {
-        return new ArrayList<>();
+        List<BookCategory> categories = new ArrayList<BookCategory>();
+        return categories;
     }
 
 
