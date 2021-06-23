@@ -66,10 +66,10 @@ public class BookRestController {
      * @param book book with changes
      * @return response entity with body with updated book
      */
-    @PutMapping(value = "book")
+    @PutMapping(value = "book/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
-        BookDto updateBook = bookService.updateBook(book);
+    public ResponseEntity<BookDto> updateBook (@PathVariable ("id") Long id, @RequestBody BookDto book){
+        BookDto updateBook = bookService.getBookById(id);
         return ResponseEntity.ok().body(updateBook);
     }
 
