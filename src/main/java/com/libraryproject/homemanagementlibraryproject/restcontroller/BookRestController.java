@@ -68,7 +68,6 @@ public class BookRestController {
      */
     @PutMapping(value = "/book",consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
         BookDto updateBook = this.bookService.updateBook(book);
         return ResponseEntity.ok().body(updateBook);
