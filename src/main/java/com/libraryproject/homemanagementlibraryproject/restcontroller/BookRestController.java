@@ -68,8 +68,8 @@ public class BookRestController {
      */
     @PutMapping(value = "/books",consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BookDto> updateBook (@PathVariable("books") BookDto book){
-        BookDto updateBook = this.bookService.updateBook(book);
+    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book) {
+        BookDto updateBook = this.bookService.getBookById(book.getId());
         return ResponseEntity.ok().body(updateBook);
     }
 
