@@ -18,6 +18,10 @@ public class BookCategoryServiceImpl implements BookCategoryService {
         this.bookCategoryRepository = bookCategoryRepository;
     }
 
+    /**
+     *
+     * @return All category books
+     */
     @Override
     public List<BookCategory> getAllCategoryBooks() {
         List<BookCategory> categories = new ArrayList<>();
@@ -30,10 +34,18 @@ public class BookCategoryServiceImpl implements BookCategoryService {
         categories.add(new BookCategory(7,"PROGRAMMING"));
         categories.add(new BookCategory(8,"FANTASTIC"));
         categories.add(new BookCategory(9,"HORROR"));
-        categories.add(new BookCategory(10,"OTHERS"));
+        categories.add(new BookCategory(10,"NON-FICTION"));
+        categories.add(new BookCategory(11,"FANTASY"));
+        categories.add(new BookCategory(12,"THRILLER"));
+        categories.add(new BookCategory(13,"OTHERS"));
         return categories;
     }
 
+    /**
+     *
+     * @param id get category books by id
+     * @return some category books by id
+     */
     @Override
     public BookCategory getOneBook(int id) {
         BookCategory category = bookCategoryRepository.getOne(id);
