@@ -66,7 +66,7 @@ public class BookRestController {
      * @param book book with changes
      * @return response entity with body with updated book
      */
-    @PutMapping(value = "/books",consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "/book",consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book) {
         BookDto updateBook = this.bookService.updateBook(book);
