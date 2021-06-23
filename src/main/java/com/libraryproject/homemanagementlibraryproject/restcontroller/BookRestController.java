@@ -66,11 +66,11 @@ public class BookRestController {
      * @param book book with changes
      * @return response entity with body with updated book
      */
-    @PutMapping(value = "/book/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(value = "/book",consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookDto> updateBook (@PathVariable("id") Long id, @RequestBody BookDto book){
-        BookDto updateBook = this.bookService.updateBook(id, book);
+    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
+        BookDto updateBook = this.bookService.updateBook(book);
         return ResponseEntity.ok().body(updateBook);
     }
 
