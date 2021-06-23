@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -59,7 +60,8 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public BookDto updateBook(BookDto book) {
+    public BookDto updateBook(Long bookId,BookDto book) {
+        book = getBookById(bookId);
         BookEntity updateBook = bookRepository.save(bookMapper.mapToEntity(book));
         return bookMapper.mapToDto(updateBook);
     }

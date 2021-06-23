@@ -47,7 +47,7 @@ public interface BookService {
     /**
      * Updates the provided book in the database.
      */
-    BookDto updateBook(BookDto book);
+    BookDto updateBook(Long bookId,BookDto book);
 
 
 }
