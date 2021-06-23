@@ -69,8 +69,9 @@ public class BookRestController {
     @PutMapping(value = "books/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto book){
-        BookDto updateBook = bookService.updateBook(book);
+    public ResponseEntity<BookDto> updateBook (@PathVariable("id") Long id, @RequestBody BookDto book){
+        BookDto updateBook = bookService.getBookById(id);
+        bookService.updateBook(book);
         return ResponseEntity.ok().body(updateBook);
     }
 
