@@ -125,31 +125,21 @@ class BookServiceTest {
         return person;
     }
 
-//    @Test
-//    void shouldUpdateBook(){
-//        //given
-//        BookDto expected = new BookDto();
-//        expected.setAuthor("NEW");
-//        expected.setTitle("New Title");
-//        expected.setStatus(BookStatus.AVAILABLE);
-//        expected.setDescription("New Description");
-//
-//        BookDto update = new BookDto();
-//        expected.setAuthor("Update");
-//        expected.setTitle("Update Title");
-//        expected.setStatus(BookStatus.AVAILABLE);
-//        expected.setDescription("Update Description");
-//
-//       //when
-//       bookService.addBook(expected);
-//       bookService.updateBook(update);
-//
-//       Long id = expected.getId();
-//
-//       BookDto actual = bookService.getBookById(id);
-//        actual.setTitle("CHANGE TITLE");
-//
-//       Assertions.assertEquals(expected,actual);
-//    }
+    @Test
+    void shouldUpdateBook(){
+        //given
+        BookDto book = createBookDto1();
+        BookDto updateBook = bookService.addBook(book);
+
+       //when
+       bookService.updateBook(updateBook);
+       Long id = updateBook.getId();
+
+       BookDto actual = bookService.getBookById(id);
+       actual.setTitle("CHANGE TITLE");
+
+       //then
+       Assertions.assertEquals(book.getClass(),actual.getClass());
+    }
 
 }

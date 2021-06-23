@@ -62,7 +62,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto updateBook(BookDto book) {
         BookEntity bookUpdate = bookRepository.findById(book.getId()).orElseThrow(IllegalArgumentException::new);
-        bookRepository.save(bookMapper.mapToEntity(book));
+//        bookRepository.save(bookMapper.mapToEntity(book));
         return bookMapper.mapToDto(bookUpdate);
     }
 
