@@ -60,7 +60,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto updateBook(BookDto book) {
-        BookEntity updateBook = bookRepository.saveAndFlush(bookMapper.mapToEntity(book));
+        BookEntity updateBook = bookRepository.save(bookMapper.mapToEntity(book));
         return bookMapper.mapToDto(updateBook);
     }
 
