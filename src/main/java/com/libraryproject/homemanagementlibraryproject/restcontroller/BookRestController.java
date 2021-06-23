@@ -70,6 +70,7 @@ public class BookRestController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BookDto> updateBook (@PathVariable ("id") Long id, @RequestBody BookDto book){
         BookDto updateBook = bookService.getBookById(id);
+        updateBook = bookService.updateBook(book);
         return ResponseEntity.ok().body(updateBook);
     }
 
