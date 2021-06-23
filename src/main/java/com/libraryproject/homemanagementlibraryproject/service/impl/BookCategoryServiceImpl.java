@@ -29,7 +29,8 @@ public class BookCategoryServiceImpl implements BookCategoryService {
         categories.add(new BookCategory(6,"EDUCATION"));
         categories.add(new BookCategory(7,"PROGRAMMING"));
         categories.add(new BookCategory(8,"FANTASTIC"));
-        categories.add(new BookCategory(9,"OTHERS"));
+        categories.add(new BookCategory(9,"HORROR"));
+        categories.add(new BookCategory(10,"OTHERS"));
         return categories;
     }
 
