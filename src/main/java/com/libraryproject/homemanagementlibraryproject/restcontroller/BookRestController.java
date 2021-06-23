@@ -74,14 +74,14 @@ public class BookRestController {
         return ResponseEntity.ok().body(updateBook);
     }
 
-    @PutMapping(value = "book/{id}/borrowed")
+    @PutMapping(value = "/book/{id}/borrowed")
     public ResponseEntity<BookDto> lendBook(@PathVariable ("id") Long id, @RequestBody PersonDto person) {
         BookDto lendBook = this.bookService.lendBook(id, person);
         lendBook.setStatus(BookStatus.BORROWED);
         return ResponseEntity.ok().body(lendBook);
     }
 
-    @GetMapping(value = "books/{id}")
+    @GetMapping(value = "/books/{id}")
     public ResponseEntity<BookDto> getBook(@PathVariable ("id") Long id) {
         BookDto book = bookService.getBookById(id);
         return ResponseEntity.ok().body(book);
