@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Setter
@@ -33,4 +34,16 @@ public class BookEntity {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private PersonEntity borrower;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookEntity)) return false;
+        BookEntity that = (BookEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(author, that.author) && status == that.status && Objects.equals(description, that.description) && Objects.equals(borrower, that.borrower);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author, status, description, borrower);
+    }
 }

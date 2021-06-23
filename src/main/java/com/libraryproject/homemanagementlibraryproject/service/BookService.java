@@ -10,7 +10,7 @@ public interface BookService {
 
     /**
      * Return all books from the database.
-     * @return
+     * @return all books from database.
      */
     List<BookDto> getAllBooks();
 
