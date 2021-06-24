@@ -132,7 +132,7 @@ class BookServiceTest {
         BookDto updateBook = bookService.addBook(book);
 
        //when
-       bookService.updateBook(updateBook);
+//       bookService.updateBook(updateBook);
        Long id = updateBook.getId();
 
        BookDto actual = bookService.getBookById(id);

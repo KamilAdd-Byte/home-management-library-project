@@ -58,20 +58,24 @@ public class BookRestController {
     @DeleteMapping(value = "/books/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deletedBook (@PathVariable ("id") Long id) {
-        bookService.deleteBook(id);
+       try {
+           bookService.deleteBook(id);
+       }catch (IllegalArgumentException e){
+           e.getStackTrace();
+       }
+
     }
 
     /**
      * Updates the specified book.
-     * @param id book with changes
+     * @param updateBook book with changes
      * @return response entity with body with updated book
      */
-    @PutMapping(value = "/book/{id}")
+    @PutMapping(value = "/books/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookDto> updateBook (@PathVariable("id") Long id) {
-        BookDto updateBook = this.bookService.getBookById(id);
-        bookService.updateBook(updateBook);
-        return ResponseEntity.ok().body(updateBook);
+    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto updateBook,@PathVariable("id") Long id) {
+        BookDto up = this.bookService.updateBook(id, updateBook);
+        return ResponseEntity.ok().body(up);
     }
 
     @PutMapping(value = "/book/{id}/borrowed")

@@ -11,9 +11,8 @@ import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -60,8 +59,8 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public BookDto updateBook(BookDto book) {
-        BookEntity bookUpdate = bookRepository.findById(book.getId()).orElseThrow(IllegalArgumentException::new);
+    public BookDto updateBook(Long id, BookDto book) {
+        BookEntity bookUpdate = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         return bookMapper.mapToDto(bookRepository.save(bookUpdate));
     }
 
