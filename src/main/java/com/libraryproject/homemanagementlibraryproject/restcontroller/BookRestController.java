@@ -66,10 +66,11 @@ public class BookRestController {
      * @param bookDto book with changes
      * @return response entity with body with updated book
      */
-    @PostMapping(value = "/books",consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(value = "/book",consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookDto> updateBook (@RequestBody BookDto bookDto) {
-       BookDto updateBook =  bookService.updateBook(bookDto);
+       BookDto updateBook = bookService.getBookById(bookDto.getId());
+       bookService.updateBook(updateBook);
         return ResponseEntity.ok().body(updateBook);
     }
 
