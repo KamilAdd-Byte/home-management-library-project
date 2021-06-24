@@ -11,7 +11,6 @@ import com.libraryproject.homemanagementlibraryproject.service.BookService;
 import com.libraryproject.homemanagementlibraryproject.validation.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -53,17 +52,24 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(Long id) {
-        BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        bookRepository.delete(bookEntity);
+        try {
+            BookEntity bookEntity = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+            bookRepository.delete(bookEntity);
+        }catch (IllegalArgumentException e){
+            e.getStackTrace();
+        }
     }
-
 
     @Override
-    public BookDto updateBook(Long id, BookDto book) {
-        BookEntity bookUpdate = bookRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        return bookMapper.mapToDto(bookRepository.save(bookUpdate));
+    public BookDto updateBook(BookDto book) {
+        try {
+            BookEntity update = bookRepository.findById(book.getId()).orElseThrow(IllegalArgumentException::new);
+            return bookMapper.mapToDto(bookRepository.save(update));
+        }catch (IllegalArgumentException e){
+            e.getStackTrace();
+        }
+        return new BookDto();
     }
-
 
     @Override
     public BookDto lendBook(Long bookId, PersonDto borrower) {
@@ -72,5 +78,4 @@ public class BookServiceImpl implements BookService {
         bookEntity.setBorrower(personMapper.mapToEntity(borrower));
         return bookMapper.mapToDto(bookRepository.save(bookEntity));
     }
-
 }

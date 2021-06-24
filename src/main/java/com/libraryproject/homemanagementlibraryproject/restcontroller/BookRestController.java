@@ -63,19 +63,18 @@ public class BookRestController {
        }catch (IllegalArgumentException e){
            e.getStackTrace();
        }
-
     }
 
     /**
      * Updates the specified book.
-     * @param updateBook book with changes
+     * @param id book with changes
      * @return response entity with body with updated book
      */
-    @PutMapping(value = "/books/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookDto> updateBook (@RequestBody BookDto updateBook,@PathVariable("id") Long id) {
-        BookDto up = this.bookService.updateBook(id, updateBook);
-        return ResponseEntity.ok().body(up);
+    @PostMapping(value = "/book/{id}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<BookDto> updateBook (@PathVariable("id") Long id) {
+        BookDto book = bookService.getBookById(id);
+        bookService.updateBook(book);
+        return ResponseEntity.ok().body(book);
     }
 
     @PutMapping(value = "/book/{id}/borrowed")
