@@ -70,7 +70,7 @@ public class BookRestController {
      * @param id book with changes
      * @return response entity with body with updated book
      */
-    @PostMapping(value = "/book/{id}", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/books/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<BookDto> updateBook (@PathVariable("id") Long id) {
         BookDto book = bookService.getBookById(id);
         bookService.updateBook(book);
