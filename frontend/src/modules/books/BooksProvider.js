@@ -115,6 +115,28 @@ const BooksProvider = ({children}) => {
             })
             const newBook = await response.json();
 
+            window.location.reload();
+
+            console.log(newBook);
+        } catch(error){
+            console.log(error);
+        }
+    }
+
+    const returnBook = async (id) => {
+        try {
+            const response = await fetch(`https://react-app-spio.herokuapp.com/book/${id}/available`, {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({firsName: 'Jan', lastName: 'Kowalski'})
+            })
+            const newBook = await response.json();
+
+            window.location.reload();
+
             console.log(newBook);
         } catch(error){
             console.log(error);

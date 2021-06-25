@@ -22,8 +22,8 @@ const ConfirmationDialog = ({text, method, showState, onClose}) => {
             <div className="confirmation__box">
                 <p>{text}</p>
                 <div className="confirmation__buttons">
-                    <Button method={onConfirm} text="Potwierdź"/>
-                    <Button method={onClose} text="Anuluj"/>
+                    <Button method={onConfirm} text="Yes"/>
+                    <Button method={onClose} text="No"/>
                 </div>
             </div>
         </section>

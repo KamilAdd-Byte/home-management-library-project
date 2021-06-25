@@ -8,7 +8,7 @@ import Search from "../../components/Search";
 import Categories from "../../components/Categories";
 
 const Books = () => {
-    const {books, fetchBooks, borrowBook, sortColumn, deleteBook} = useContext(BooksContext)
+    const {books, fetchBooks, borrowBook, returnBook, sortColumn, deleteBook} = useContext(BooksContext)
     const [bookToRemove, setBookToRemove] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -77,7 +77,10 @@ const Books = () => {
                         <td className={setStatusColor(book.status)}>{book.status}</td>
                         <td>{book.description}</td>
                         <td>
-                            <Button text="Borrow" method={() => borrowBook(book.id)}/>
+                            {book.status ==='AVAILABLE' ?
+                                <Button text="Borrow" method={() => borrowBook(book.id)}/> :
+                                <Button text="Return" method={() => returnBook(book.id)}/>
+                            }
                             <Button href={`/edit/${book.id}`} text="Edit" />
                             <Button text="Delete" method={() => onDelete(book.id)} />
                         </td>
@@ -87,7 +90,7 @@ const Books = () => {
                 </tbody>
             </table>
             <ConfirmationDialog
-                text="Czy na pewno chcesz usunąć książkę?"
+                text="Are you sure to delete this book?"
                 method={onModalConfirm}
                 showState={isModalVisible}
                 onClose={onModalClose}
