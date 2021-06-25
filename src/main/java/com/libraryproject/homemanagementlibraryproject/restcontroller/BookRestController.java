@@ -84,7 +84,7 @@ public class BookRestController {
         return ResponseEntity.ok().body(lendBook);
     }
 
-    @PutMapping(value = "book/{id}/available")
+    @PutMapping(value = "/book/{id}/available")
     public ResponseEntity<BookDto> returnBook(@PathVariable ("id") Long id, @RequestBody PersonDto person) {
         BookDto giveBackBook = this.bookService.returnBook(id, person);
         giveBackBook.setStatus(BookStatus.AVAILABLE);
@@ -105,10 +105,10 @@ public class BookRestController {
         List<BookCategory> books = bookCategoryService.getAllCategoryBooks();
         return ResponseEntity.ok().body(books);
     }
-
-    @GetMapping("/books/{bookCategory}")
-    public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("bookCategory") BookCategory bookCategory) {
-        BookCategory booksCategory = bookCategoryService.getOneBook(bookCategory.getId());
-        return ResponseEntity.ok().body(booksCategory);
-    }
+    /** --this line has conflict with getBook controller--
+      @GetMapping("/books/{bookCategory}")
+      public ResponseEntity<BookCategory> getOneCategoryBooks(@PathVariable ("bookCategory") BookCategory bookCategory) {
+          BookCategory booksCategory = bookCategoryService.getOneBook(bookCategory.getId());
+          return ResponseEntity.ok().body(booksCategory);
+      }*/
 }
