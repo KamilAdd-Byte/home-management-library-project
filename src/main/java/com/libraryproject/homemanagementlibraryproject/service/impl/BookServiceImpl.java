@@ -78,4 +78,12 @@ public class BookServiceImpl implements BookService {
         bookEntity.setBorrower(personMapper.mapToEntity(borrower));
         return bookMapper.mapToDto(bookRepository.save(bookEntity));
     }
+
+    @Override
+    public BookDto returnBook(Long bookId, PersonDto borrower) {
+        BookEntity bookEntity = bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("Book with given id does not exist"));
+        bookEntity.setStatus(BookStatus.AVAILABLE);
+        bookEntity.setBorrower(personMapper.mapToEntity(borrower));
+        return bookMapper.mapToDto(bookRepository.save(bookEntity));
+    }
 }

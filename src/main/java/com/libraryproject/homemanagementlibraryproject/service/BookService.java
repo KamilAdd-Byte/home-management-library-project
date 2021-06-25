@@ -43,6 +43,8 @@ public interface BookService {
      */
     BookDto lendBook(Long bookId, PersonDto borrower);
 
+    BookDto returnBook(Long bookId, PersonDto borrower);
+
     /**
      * Updates the provided book in the database.
      */

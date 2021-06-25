@@ -84,6 +84,13 @@ public class BookRestController {
         return ResponseEntity.ok().body(lendBook);
     }
 
+    @PutMapping(value = "book/{id}/available")
+    public ResponseEntity<BookDto> returnBook(@PathVariable ("id") Long id, @RequestBody PersonDto person) {
+        BookDto giveBackBook = this.bookService.returnBook(id, person);
+        giveBackBook.setStatus(BookStatus.AVAILABLE);
+        return ResponseEntity.ok().body(giveBackBook);
+    }
+
     @GetMapping(value = "/books/{id}")
     public ResponseEntity<BookDto> getBook(@PathVariable ("id") Long id) {
         BookDto book = bookService.getBookById(id);
