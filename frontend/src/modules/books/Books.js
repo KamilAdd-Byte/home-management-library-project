@@ -5,7 +5,7 @@ import {BooksContext} from "./BooksProvider";
 import Button from "../../components/Button";
 import ConfirmationDialog from "../../components/ConfirmationDialog";
 import Search from "../../components/Search";
-import Categories from "../../components/Categories";
+// import Categories from "../../components/Categories";
 
 const Books = () => {
     const {books, fetchBooks, borrowBook, returnBook, sortColumn, deleteBook} = useContext(BooksContext)
@@ -40,7 +40,7 @@ const Books = () => {
         <>
             <div className="books__filters">
                 <Search />
-                <Categories />
+                {/* <Categories /> */}
             </div>
             <table>
                 <thead>

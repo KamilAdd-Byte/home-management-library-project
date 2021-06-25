@@ -38,11 +38,11 @@ const Book = ({history, match}) => {
 
     const handleSave = () => {
         try{
-            if(match.params.id){
-                editBook(book)
-            }else{
+            // if(match.params.id){
+            //     editBook(book)
+            // }else{
                 addBook(book);
-            }
+            // }
             history.push('/')
         }catch(error) {
             console.log(error);

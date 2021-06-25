@@ -14,7 +14,7 @@ import CategoriesProvider from "./modules/categories/CategoriesProvider";
 
 const App = () => (
     <React.Fragment>
-        <CategoriesProvider>
+        {/* <CategoriesProvider> */}
             <BooksProvider>
                 <Router>
                     <Header />
@@ -31,7 +31,7 @@ const App = () => (
                     <Footer />
                 </Router>
             </BooksProvider>
-        </CategoriesProvider>
+        {/* </CategoriesProvider> */}
     </React.Fragment>
 )
 
