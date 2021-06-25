@@ -154,6 +154,7 @@ const BooksProvider = ({children}) => {
         deleteBook,
         filterByName,
         borrowBook,
+        returnBook,
         sortColumn: sortBooksByColumn,
         totalCount: books.length
     }), [books])
